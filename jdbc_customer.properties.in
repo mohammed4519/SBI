@@ -1,0 +1,74 @@
+## PROPERTY_FILE_NAME
+## jdbc_customer.properties.in (for initialization)
+## jdbc_customer.properties (for operations)
+
+## PROPERTY_FILE_DESCRIPTION
+## The jdbc_customer.properties file has the same settings as the jdbc.properties file. This allows
+## you to separate your customized database pool information (in jdbc_customer.properties) from the
+## pool information provided by Application (in jdbc.properties). This arrangement
+## has the following benefits:
+## * During an upgrade, you can copy your jdbc_customer.properties.in file instead of cutting
+##   and pasting your changes out of jdbc.properties.
+## * The application can make changes to the jdbc.properties file during a patch (if
+##   necessary) without changing a database pool that you added.
+## For information about the properties in the jdbc_customer.properties file, refer to
+## the documentation for the jdbc.properties file.
+
+## DATABASE_SUPPORT: N
+
+## Adding Database Pools
+## You can use the jdbc_customer.properties file to add a new database pool to the application
+## environment.  You can add this pool without having to restart the application, which lets
+## you continue running business processes.
+## To dynamically add a new database pool, do the following:
+## 1. Create the new pool in jdbc_customer.properties.
+## 2. Refresh the JDBC properties by doing one of the following:
+##    * Click the Refresh JDBC Pools button on the JDBC Monitor page.
+##    * Go the the [install_dir]/install/bin directory (UNIX/Linux) or the
+##      [install_dir]\install\bin directory (Windows) and run the following command:
+##      opscmd.sh/opscmd.cmd -cREFRESHJDBC -nnode1
+## 3. Use the Database Usage page to confirm that you have added the pool.  
+db2PoolAT.driver=COM.ibm.db2.jdbc.net.DB2Driver
+
+db2PoolAT.driver=com.ibm.db2.jcc.DB2Driver
+
+db2PoolAT.url=jdbc:db2://&DB2_HOST;:&DB2_PORT;/&DB2_DATA;
+db2PoolAT.catalog=&DB2_DATA;
+db2PoolAT.dbname=&DB2_DATA;
+db2PoolAT.varDataClassName=com.sterlingcommerce.woodstock.util.frame.jdbc.DB2VarData
+db2PoolAT.user=&DB2_USER;
+db2PoolAT.password=&DB2_PASS;
+db2PoolAT.maxconn=20;
+
+db2PoolAT.schema=&DB_SCHEMA_OWNER;
+
+db2PoolAT.schema=&DB2_USER;
+
+db2PoolAT.storedProcClassName=com.sterlingcommerce.woodstock.util.frame.jdbc.SybaseStoredProcQuery
+db2PoolAT.testOnReserve=true
+db2PoolAT.testOnReserveQuery=SELECT PRODUCT_LABEL from DB2INST1.SI_VERSION where PRODUCT_LABEL = ?
+db2PoolAT.testOnReserveInterval=60000
+db2PoolAT.maxRetries=100
+db2PoolAT.blobPageSize=1024000
+db2PoolAT.compressBlob=true
+useNewStateAndStatusLogic=true
+
+#db2PoolAT.cacheps=true
+
+
+#db2PoolAT.cacheps=true
+
+db2PoolAT.dbvendor=db2
+db2PoolAT.buffersize=500
+db2PoolAT.maxsize=&MAX_TRANS_POOL;
+db2PoolAT.initsize=&MIN_TRANS_POOL;
+db2PoolAT.factory=com.sterlingcommerce.woodstock.util.frame.jdbc.ConnectionFactory
+db2PoolAT.behaviour=2
+db2PoolAT.lifespan=0
+db2PoolAT.idletimeout=86400000
+db2PoolAT.housekeepinginterval=3600000
+db2PoolAT.waittime=1000
+db2PoolAT.errorMissingTable=-204
+db2PoolAT.transaction=true
+db2PoolAT.defaultIsolationLevel=2
+db2PoolAT.systemPool=true

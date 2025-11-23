@@ -1,0 +1,1 @@
+This is a text file created for Broadcasting Messages using Shared Mailboxes exercise in the SFG course.
